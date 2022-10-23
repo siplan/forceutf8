@@ -5,7 +5,7 @@ PHP Class Encoding featuring popular \ForceUTF8\Encoding::toUTF8() function --fo
 ## Fork
 
 This package is a fork of the [`neitanod/forceutf8`](https://github.com/neitanod/forceutf8) library
-that adds support for a wider range of PHP versions.
+that adds support for PHP 7.0 and higher.
 
 This fork:
 - fixes deprecations for new versions of PHP
