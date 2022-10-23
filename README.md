@@ -1,12 +1,18 @@
-forceutf8
-=========
+# ForceUTF8
 
 PHP Class Encoding featuring popular \ForceUTF8\Encoding::toUTF8() function --formerly known as forceUTF8()-- that fixes mixed encoded strings.
 
-Description
-===========
+## Fork
 
-If you apply the PHP function utf8_encode() to an already-UTF8 string it will return a garbled UTF8 string.
+This package is a fork of the [`neitanod/forceutf8`](https://github.com/neitanod/forceutf8) library
+that adds support for a wider range of PHP versions.
+
+This fork:
+- fixes deprecations for new versions of PHP
+
+## Description
+
+If you apply the PHP function `utf8_encode()` to an already-UTF8 string it will return a garbled UTF8 string.
 
 This class addresses this issue and provides a handy static function called \ForceUTF8\Encoding::toUTF8().
 
@@ -18,8 +24,7 @@ Update:
 
 I've included another function, \ForceUTF8\Encoding::fixUTF8(), which will fix the double (or multiple) encoded UTF8 string that looks garbled.
 
-Usage:
-======
+## Usage
 
     use \ForceUTF8\Encoding;
 
@@ -47,8 +52,8 @@ will output:
     Fédération Camerounaise de Football
     Fédération Camerounaise de Football
     
-Options:
-========
+## Options
+
 By default, `Encoding::fixUTF8` will use the `Encoding::WITHOUT_ICONV` flag, signalling that iconv should not be used to fix garbled UTF8 strings.
 
 This class also provides options for iconv processing, such as `Encoding::ICONV_TRANSLIT` and `Encoding::ICONV_IGNORE` to enable these flags when the iconv class is utilized. The functionality of such flags are documented in the [PHP iconv documentation](http://php.net/manual/en/function.iconv.php).
@@ -91,13 +96,7 @@ Edit your composer.json file to include the following:
 ```json
 {
     "require": {
-        "neitanod/forceutf8": "~2.0"
+        "relisten/forceutf8": "~1.0"
     }
 }
 ```
-
-Tips:
-=====
-You can tip me with Bitcoin if you want. :)
-
-<img src="resources/wallet.jpg" width="225" alt="1Awfu4TZpy99H7Pyzt1mooxU1aP2mJVdHP">
