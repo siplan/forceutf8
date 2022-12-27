@@ -96,7 +96,7 @@ Edit your composer.json file to include the following:
 ```json
 {
     "require": {
-        "relisten/forceutf8": "~1.0"
+        "fylax/forceutf8": "~1.0"
     }
 }
 ```
