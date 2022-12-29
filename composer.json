@@ -16,14 +16,10 @@
             "name": "Nico Caprioli",
             "email": "nico.caprioli@gmail.com",
             "role": "Developer"
-        },
-        {
-            "name": "Sjoerd Wenker",
-            "email": "sjoerd@relisten.nl"
         }
     ],
     "autoload": {
-        "psr-4": {
+        "psr-0": {
             "ForceUTF8\\": "src/"
         }
     },
