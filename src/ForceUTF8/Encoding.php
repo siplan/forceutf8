@@ -135,7 +135,6 @@ class Encoding {
        "\xc5\xb8"     => "\x9f"
     );
 
-  static function toUTF8($text){
   /**
    * Function \ForceUTF8\Encoding::toUTF8
    *
@@ -155,11 +154,12 @@ class Encoding {
    * 2) when any of these: àáâãäåæçèéêëìíîï  are followed by TWO chars from group B,
    * 3) when any of these: ðñòó  are followed by THREE chars from group B.
    *
-   * @name toUTF8
-   * @param string $text  Any string.
-   * @return string  The same string, UTF8 encoded
+   * @param string|array $text  Any string.
+   * @return string|array  The same string, UTF8 encoded
    *
    */
+  public static function toUTF8($text)
+  {
 
     if(is_array($text))
     {
@@ -230,7 +230,7 @@ class Encoding {
     return $buf;
   }
 
-  static function toWin1252($text, $option = self::WITHOUT_ICONV) {
+  public static function toWin1252($text, $option = self::WITHOUT_ICONV) {
     if(is_array($text)) {
       foreach($text as $k => $v) {
         $text[$k] = self::toWin1252($v, $option);
@@ -243,15 +243,15 @@ class Encoding {
     }
   }
 
-  static function toISO8859($text, $option = self::WITHOUT_ICONV) {
+  public static function toISO8859($text, $option = self::WITHOUT_ICONV) {
     return self::toWin1252($text, $option);
   }
 
-  static function toLatin1($text, $option = self::WITHOUT_ICONV) {
+  public static function toLatin1($text, $option = self::WITHOUT_ICONV) {
     return self::toWin1252($text, $option);
   }
 
-  static function fixUTF8($text, $option = self::WITHOUT_ICONV){
+  public static function fixUTF8($text, $option = self::WITHOUT_ICONV){
     if(is_array($text)) {
       foreach($text as $k => $v) {
         $text[$k] = self::fixUTF8($v, $option);
@@ -268,11 +268,10 @@ class Encoding {
       $last = $text;
       $text = self::toUTF8(static::utf8_decode($text, $option));
     }
-    $text = self::toUTF8(static::utf8_decode($text, $option));
-    return $text;
+    return self::toUTF8(static::utf8_decode($text, $option));
   }
 
-  static function UTF8FixWin1252Chars($text){
+  public static function UTF8FixWin1252Chars($text){
     // If you received an UTF-8 string that was converted from Windows-1252 as it was ISO8859-1
     // (ignoring Windows-1252 chars from 80 to 9F) use this function to fix it.
     // See: http://en.wikipedia.org/wiki/Windows-1252
@@ -280,7 +279,7 @@ class Encoding {
     return str_replace(array_keys(self::$brokenUtf8ToUtf8), array_values(self::$brokenUtf8ToUtf8), $text);
   }
 
-  static function removeBOM($str=""){
+  public static function removeBOM($str=""){
     if(substr($str, 0,3) === pack("CCC",0xef,0xbb,0xbf)) {
       $str=substr($str, 3);
     }
@@ -292,7 +291,7 @@ class Encoding {
            mb_strlen($text,'8bit') : strlen($text);
   }
 
-  public static function normalizeEncoding($encodingLabel)
+  public static function normalizeEncoding($encodingLabel): string
   {
     $encoding = strtoupper($encodingLabel);
     $encoding = preg_replace('/[^a-zA-Z0-9\s]/', '', $encoding);
