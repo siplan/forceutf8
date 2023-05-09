@@ -15,6 +15,7 @@ use function ini_get;
 use function intdiv;
 use function is_array;
 use function is_string;
+use function mb_convert_encoding;
 use function ord;
 use function pack;
 use function preg_replace;
